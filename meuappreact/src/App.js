@@ -2,54 +2,70 @@ import React, { Component } from 'react';
 import './estilo.css'
 
 class App extends Component{
-
+ 
   constructor(props){
     super(props);
     this.state = {
-      textofrase : ''
+      numero: 0,
+      botaoTXT: "INICIAR"
     };
 
-    this.quebrabiscoito = this.quebrabiscoito.bind(this);
-
-    this.frases = ["Não existem batalhas impossíveis para quem está disposto a nunca desistir.",
-     "Algumas coisas ruins acontecem para aprendermos a ficar mais fortes. ",
-    "Nunca é tarde para fazer o que ainda movimenta os seus sonhos.",
-    " Gostaria que você soubesse que existe dentro de si uma força capaz de mudar sua vida.",
-    "Quem tem luz própria jamais ficará na escuridão.",
-    "Você atingirá o sucesso quando apresentar com orgulho as cicatrizes que adquiriu ao longo da sua jornada.",
-    "Quanto mais fortes forem suas provações, maiores serão suas vitórias."];
+    this.timer = null;
+    this.iniciar =this.iniciar.bind(this);
+    this.zerar = this.zerar.bind(this);
   }
 
-  quebrabiscoito(){
-   let state = this.state;
-   let numeroaleatroio = Math.floor(Math.random() * this.frases.length);
-   state.textofrase = '"' + this.frases[numeroaleatroio] + '"';
-   this.setState(state)
+  iniciar(){
+
+  let state = this.state;
+
+  if(this.timer !== null){
+   clearInterval(this.timer);
+   this.timer = null;
+   state.botaoTXT = "INICIAR";
+  }else{
+    this.timer = setInterval(() =>{
+    let state = this.state;
+    state.numero += 0.1;
+    this.setState(state);
+      },100);
+      state.botaoTXT = "PAUSAR"
+    }
+     this.setState(state);
   }
 
+  zerar(){
+    if(this.timer !== null){
+      clearInterval(this.timer);
+      this.timer = null;
+      }
+
+      let state = this.state;
+      state.numero = 0;
+      state.botaoTXT= "INICIAR";
+      this.setState(state);
+
+  }
 
   render(){
     return(
       <div className="container">
-        
-       <img src={require('./assest/biscoito.png')} className="img"/>
-       <Botao nome="Abrir o biscoito" acaobtn = {this.quebrabiscoito}/>
-
-       <h3 className="textodafrase">{this.state.textofrase} </h3>
+        <h1 className="titulo">Cronometro!</h1>
+        <img src = {require ('./assest/cronometro.png')} className= "img"/>
+        <a className="Timer">{this.state.numero.toFixed(1)}</a>
+       <div className="AreaBTN">
+         <a className="Botaoini" onClick={this.iniciar}>{this.state.botaoTXT}</a>
+         <a className="Botaoze" onClick={this.zerar}>ZERAR</a>
+        </div> 
+       
+       
       </div>
     );
   }
 }
  
-class Botao extends Component{
-  render(){
-    return(
-<div>
-  <button onClick={this.props.acaobtn} >{this.props.nome}</button>
-</div>
-    );
-  }
-}
+
+
 
 
 export default App;

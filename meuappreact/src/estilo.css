@@ -2,18 +2,69 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: 500%;
   justify-content: center;
   align-items: center;
+
+}
+
+.titulo{
+color: #dd7b22;
+font-style: initial;
+}
+
+
+.Timer{
+  font-size: 80px;
+  margin-top: -235px;
 }
 
 .img{
-    width: 300px;
-    height: 300px;
-    margin-top: 50px;
+
+  width:  350px;
+  height: 350px;
+  padding-top: 100px;
 }
 
-.textodafrase{
-    font-style: italic;
-    color: #dd7b22;
-    text-align: center;
+body{
+  background-color: cornsilk;
 }
+
+.AreaBTN{
+   display: flex;
+   margin-top: -0px;
+}
+
+.Botaoini{
+ width: 100px;
+ background-color: antiquewhite;
+ text-align: center;
+ border-radius: 10px;
+ margin-left: 15px;
+ font-size: 20px;
+ cursor: pointer;
+}
+
+.Botaoze{
+  width: 100px;
+  background-color: antiquewhite;
+  text-align: center;
+  border-radius: 10px;
+  margin-left: 15px;
+  font-size: 20px;
+  cursor: pointer;
+ }
+
+ .Botaoini:hover{
+opacity: 0.7;
+color: black;
+transition: all 0.60s;
+ }
+
+ .Botaoze:hover{
+  opacity: 0.7;
+  color: black;
+  transition: all 0.60s;
+   }
+
+
